@@ -3,7 +3,7 @@
 (asdf:defsystem #:clos-calendar
   :description "A calendar library(?) making use of CLOS"
   :author "John Lorentzson (Duuqnd)"
-  :license  "MIT License"
+  :license  "BSD 2-Clause License"
   :version "0.0.1"
   :serial t
   :depends-on (#:local-time #:closer-mop #:str #:messagebox)
