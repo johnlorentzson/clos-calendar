@@ -73,29 +73,22 @@
         (t obj-list)))
 
 (defun load-calendar-from-file (calendar-name)
-  (flet ((fix-timestamps (initarg-list)
-           (loop :for initarg :in initarg-list
-                 :collect (cond
-                            ((and (listp (second initarg))
-                                  (eq (first (second initarg)) :timestamp))
-                             (list (first initarg) (time:parse-timestring (cadadr initarg))))
-                            (t initarg)))))
-    (with-open-file (stream (merge-pathnames
-                             (format nil "~A.calendar" calendar-name)
-                             *calendar-save-path*))
-      (when (string-not-equal (read stream) calendar-name)
-        (error "Calendar name and file name don't match."))
-      (let ((events '())
-            (*package* (find-package '#:clos-calendar)))
-        (handler-case
-            (loop
-              (let ((obj (parse-saved-obj (read stream))))
-                (cond ((typep obj 'entry)
-                       (push obj events))
-                      ((and (typep obj 'reminder) (not (has-fired-p obj)))
-                       (register-reminder obj))
-                      (t (error "Invalid object in calendar.")))))
-          (end-of-file () (make-instance 'calendar :events events :name calendar-name)))))))
+  (with-open-file (stream (merge-pathnames
+                           (format nil "~A.calendar" calendar-name)
+                           *calendar-save-path*))
+    (when (string-not-equal (read stream) calendar-name)
+      (error "Calendar name and file name don't match."))
+    (let ((events '())
+          (*package* (find-package '#:clos-calendar)))
+      (handler-case
+          (loop
+            (let ((obj (parse-saved-obj (read stream))))
+              (cond ((typep obj 'entry)
+                     (push obj events))
+                    ((and (typep obj 'reminder) (not (has-fired-p obj)))
+                     (register-reminder obj))
+                    (t (error "Invalid object in calendar.")))))
+        (end-of-file () (make-instance 'calendar :events events :name calendar-name))))))
 
 (defvar *home-timezone* time:*default-timezone*)
 
