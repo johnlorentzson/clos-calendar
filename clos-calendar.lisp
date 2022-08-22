@@ -86,7 +86,7 @@
       (when (string-not-equal (read stream) calendar-name)
         (error "Calendar name and file name don't match."))
       (let ((events '())
-            (*package* (find-package '#:cl-calendar)))
+            (*package* (find-package '#:clos-calendar)))
         (handler-case
             (loop
               (let ((obj (parse-saved-obj (read stream))))
