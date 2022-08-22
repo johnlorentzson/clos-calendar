@@ -1,5 +1,3 @@
-;;;; cl-calendar.asd
-
 (asdf:defsystem #:clos-calendar
   :description "A calendar library(?) making use of CLOS"
   :author "John Lorentzson (Duuqnd)"

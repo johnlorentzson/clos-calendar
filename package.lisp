@@ -15,7 +15,7 @@
            #:name #:notes #:location #:category #:start-time #:end-time #:repeat
            #:reminders #:lasts-all-day-p #:completed-p))
 
-(defpackage #:cl-calendar.crappy-tui
+(defpackage #:clos-calendar.crappy-tui
   (:use #:cl)
   (:local-nicknames (#:cal #:clos-calendar)
                     (#:time #:local-time))
