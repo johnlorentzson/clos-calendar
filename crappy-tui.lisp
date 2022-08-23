@@ -1,4 +1,4 @@
-(in-package #:cl-calendar.crappy-tui)
+(in-package #:clos-calendar.crappy-tui)
 
 (defvar *active-calendar*)
 
