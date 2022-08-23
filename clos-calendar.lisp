@@ -44,7 +44,7 @@
     (write-char #\) stream)))
 
 (defun save-calendar-to-file (calendar)
-  (let ((*package* (find-package '#:cl-calendar)))
+  (let ((*package* (find-package '#:clos-calendar)))
     (with-open-file (stream (merge-pathnames
                              (format nil "~A.calendar" (name calendar))
                              *calendar-save-path*)
