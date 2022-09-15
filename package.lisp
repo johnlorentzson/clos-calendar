@@ -9,7 +9,7 @@
            #:calendar-view-item-mixin #:task-view-item-mixin
            #:entry #:event #:task
            #:in-the-past-p #:in-the-future-p #:happening-now-p #:overdue-p
-           #:calendar #:add-event #:list-of-events #:sorted-events #:future-events
+           #:calendar #:add-entry #:list-of-events #:sorted-events #:future-events
 
            ;; Slot accessors
            #:name #:notes #:location #:category #:start-time #:end-time #:repeat

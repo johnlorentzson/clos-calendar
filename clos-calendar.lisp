@@ -176,7 +176,7 @@ TODO: Make something that lets a UI actually affect this."
             :initform '()
             :initarg :events)))
 
-(defmethod add-event ((calendar calendar) (event entry))
+(defmethod add-entry ((calendar calendar) (event entry))
   (push event (calendar-events calendar))
   event)
 
